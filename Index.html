@@ -1,0 +1,580 @@
+<!--
+====================================================
+HAPPY BIRTHDAY TRIBUTE TO SIR T
+Made by ANTHONY-ONYENAOBI JEFFERY C.K.
+Department of Computer Engineering
+Federal University of Technology Owerri
+====================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sir T</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--royal-blue:#0f2c59;
+--deep-blue:#050b16;
+--gold:#ffd700;
+--white:#ffffff;
+--glass:rgba(255,255,255,0.08);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#020617,#081120,#0f2c59);
+color:white;
+overflow-x:hidden;
+}
+
+#particles{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-2;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px 20px;
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(circle,var(--gold),transparent);
+filter:blur(150px);
+opacity:0.2;
+z-index:-1;
+}
+
+.sir-image{
+width:260px;
+height:260px;
+border-radius:50%;
+object-fit:cover;
+border:6px solid var(--gold);
+box-shadow:
+0 0 20px var(--gold),
+0 0 40px rgba(255,215,0,0.4),
+0 0 80px rgba(255,215,0,0.2);
+animation:float 4s ease-in-out infinite;
+}
+
+.main-title{
+margin-top:30px;
+font-size:4rem;
+font-family:'Orbitron',sans-serif;
+color:var(--gold);
+text-shadow:
+0 0 10px var(--gold),
+0 0 20px var(--gold),
+0 0 40px rgba(255,215,0,0.7);
+animation:glow 3s infinite alternate;
+}
+
+.name{
+font-size:2rem;
+font-weight:700;
+margin-top:15px;
+}
+
+.nickname{
+font-size:1.2rem;
+margin-top:10px;
+color:#ffef9a;
+}
+
+.department{
+margin-top:20px;
+line-height:1.8;
+font-size:1.1rem;
+opacity:0.9;
+}
+
+.scroll-down{
+margin-top:40px;
+font-size:1rem;
+color:var(--gold);
+animation:bounce 2s infinite;
+}
+
+.glass-card{
+width:min(1000px,92%);
+margin:80px auto;
+padding:40px;
+background:var(--glass);
+border:1px solid rgba(255,255,255,0.1);
+border-radius:30px;
+backdrop-filter:blur(15px);
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+transform:translateY(80px);
+opacity:0;
+transition:1s ease;
+}
+
+.glass-card.show{
+transform:translateY(0);
+opacity:1;
+}
+
+.section-title{
+font-size:2rem;
+margin-bottom:20px;
+font-family:'Orbitron',sans-serif;
+color:var(--gold);
+}
+
+.message{
+font-size:1.1rem;
+line-height:2;
+}
+
+.cards{
+width:90%;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-bottom:100px;
+}
+
+.card{
+background:rgba(255,255,255,0.06);
+border-radius:25px;
+padding:35px 25px;
+backdrop-filter:blur(12px);
+transition:0.5s;
+border:1px solid rgba(255,255,255,0.08);
+text-align:center;
+transform-style:preserve-3d;
+}
+
+.card:hover{
+transform:translateY(-15px) rotateX(8deg) scale(1.03);
+box-shadow:0 0 30px rgba(255,215,0,0.4);
+}
+
+.card h3{
+margin-bottom:15px;
+color:var(--gold);
+font-size:1.5rem;
+}
+
+.card p{
+line-height:1.8;
+}
+
+.tech-symbol{
+position:fixed;
+color:rgba(255,215,0,0.12);
+font-family:monospace;
+z-index:-1;
+animation:rise linear infinite;
+}
+
+.music-btn{
+position:fixed;
+top:20px;
+right:20px;
+width:60px;
+height:60px;
+border:none;
+border-radius:50%;
+background:var(--gold);
+font-size:24px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,215,0,0.6);
+z-index:999;
+transition:0.4s;
+}
+
+.music-btn:hover{
+transform:scale(1.1);
+}
+
+footer{
+margin-top:100px;
+padding:60px 20px;
+text-align:center;
+background:rgba(0,0,0,0.35);
+}
+
+footer h2{
+color:var(--gold);
+font-size:2rem;
+margin-bottom:20px;
+}
+
+.creator{
+margin-top:25px;
+font-weight:600;
+color:#ffef9a;
+}
+
+@keyframes glow{
+from{
+text-shadow:0 0 10px var(--gold);
+}
+
+to{
+text-shadow:
+0 0 20px var(--gold),
+0 0 40px var(--gold),
+0 0 80px rgba(255,215,0,0.8);
+}
+}
+
+@keyframes float{
+0%{transform:translateY(0px)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0px)}
+}
+
+@keyframes rise{
+from{
+transform:translateY(100vh) rotate(0deg);
+opacity:0;
+}
+
+to{
+transform:translateY(-120vh) rotate(360deg);
+opacity:1;
+}
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(10px)}
+}
+
+@media(max-width:768px){
+
+.main-title{
+font-size:2.4rem;
+}
+
+.name{
+font-size:1.5rem;
+}
+
+.sir-image{
+width:200px;
+height:200px;
+}
+
+.glass-card{
+padding:25px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- ====================================================
+EDIT MUSIC LINK HERE
+==================================================== -->
+
+<audio id="music">
+<source src="YOUR_PIANO_MUSIC_LINK_HERE.mp3">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">♪</button>
+
+<section class="hero">
+
+<!-- ====================================================
+EDIT IMAGE LINK HERE
+==================================================== -->
+
+<img
+src="YOUR_IMAGE_LINK_HERE"
+class="sir-image"
+alt="Sir T"
+>
+
+<h1 class="main-title">HAPPY BIRTHDAY</h1>
+
+<h2 class="name">
+EZEANORO MISHAEL TOBECHUKWU
+</h2>
+
+<p class="nickname">"Sir T"</p>
+
+<p class="department">
+Department of Computer Engineering<br>
+Federal University of Technology Owerri
+</p>
+
+<div class="scroll-down">
+▼ Scroll Down ▼
+</div>
+
+</section>
+
+<section class="glass-card reveal">
+
+<h2 class="section-title">
+A Birthday Tribute
+</h2>
+
+<p class="message">
+Today, the Department of Computer Engineering celebrates not just another birthday,
+but the life of an inspiring personality whose wisdom, guidance, leadership, and dedication
+continue to inspire students and everyone around him.
+
+<br><br>
+
+Your passion for growth, excellence, and innovation has made a meaningful impact,
+and your influence continues to shape future engineers and leaders.
+
+<br><br>
+
+On this special occasion, we pray for greater wisdom, long life, peace,
+joy, divine favor, excellent health, prosperity, and continuous success.
+
+<br><br>
+
+Happy Birthday Sir T 🎉
+</p>
+
+</section>
+
+<div class="cards">
+
+<div class="card reveal">
+<h3>Leadership</h3>
+<p>
+Thank you for leading with wisdom, patience, and excellence.
+</p>
+</div>
+
+<div class="card reveal">
+<h3>Innovation</h3>
+<p>
+Your dedication to technology and learning continues to inspire students.
+</p>
+</div>
+
+<div class="card reveal">
+<h3>Impact</h3>
+<p>
+Your positive influence extends far beyond the classroom.
+</p>
+</div>
+
+</div>
+
+<section class="glass-card reveal">
+
+<h2 class="section-title">
+Prayers & Long Life Wishes
+</h2>
+
+<p class="message">
+May your future shine brighter with every passing year.
+
+<br><br>
+
+May God continue to strengthen you with wisdom,
+peace, happiness, favor, excellent health, and countless achievements.
+
+<br><br>
+
+May your impact continue to uplift lives,
+and may greater opportunities continue to locate you.
+
+<br><br>
+
+We celebrate and appreciate you today and always.
+</p>
+
+</section>
+
+<footer>
+
+<h2>
+Happy Birthday Sir T 🎂
+</h2>
+
+<p>
+From the Department of Computer Engineering
+</p>
+
+<p>
+Federal University of Technology Owerri
+</p>
+
+<p class="creator">
+Designed and Developed by<br>
+ANTHONY-ONYENAOBI JEFFERY C.K.
+</p>
+
+</footer>
+
+<script>
+
+Swal.fire({
+icon:'success',
+title:'Happy Birthday Sir T 🎉',
+text:'A special tribute from Computer Engineering Students.',
+confirmButtonColor:'#ffd700'
+});
+
+confetti({
+particleCount:250,
+spread:120,
+origin:{y:0.6}
+});
+
+const music = document.getElementById('music');
+
+function toggleMusic(){
+if(music.paused){
+music.play();
+}else{
+music.pause();
+}
+}
+
+const symbols = [
+'</>',
+'{}',
+'0101',
+'C++',
+'HTML',
+'Python',
+'AI',
+'JS',
+'TECH'
+];
+
+function createSymbol(){
+
+const symbol = document.createElement('div');
+
+symbol.className = 'tech-symbol';
+
+symbol.innerText = symbols[
+Math.floor(Math.random()*symbols.length)
+];
+
+symbol.style.left = Math.random()*100 + 'vw';
+
+symbol.style.fontSize =
+Math.random()*20 + 14 + 'px';
+
+symbol.style.animationDuration =
+Math.random()*10 + 8 + 's';
+
+document.body.appendChild(symbol);
+
+setTimeout(()=>{
+symbol.remove();
+},15000);
+
+}
+
+setInterval(createSymbol,500);
+
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll',()=>{
+
+reveals.forEach(item=>{
+
+const top = item.getBoundingClientRect().top;
+
+if(top < window.innerHeight - 100){
+item.classList.add('show');
+}
+
+});
+
+});
+
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+radius:Math.random()*2,
+speed:Math.random()*0.5
+});
+}
+
+function animateParticles(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle = 'rgba(255,215,0,0.7)';
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+ctx.fill();
+
+p.y -= p.speed;
+
+if(p.y < 0){
+p.y = canvas.height;
+p.x = Math.random()*canvas.width;
+}
+
+});
+
+requestAnimationFrame(animateParticles);
+
+}
+
+animateParticles();
+
+</script>
+
+</body>
+</html>
